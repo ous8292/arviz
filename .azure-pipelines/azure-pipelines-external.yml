@@ -90,6 +90,8 @@ jobs:
       fi
 
       grep -Ev '^pystan|^pyro|^emcee|^pymc3' requirements-external.txt | xargs python -m pip install
+
+      pip install numpy -U
     displayName: 'Install packages'
 
   - script: |
@@ -100,18 +102,12 @@ jobs:
     displayName: 'Install requirements'
 
   - script: |
-      python -m pip install .
+      python -m pip install --no-deps .
     displayName: 'Install ArviZ package'
 
   - script: |
       python -m pip freeze
     displayName: 'Print packages'
-
-  - script: |
-      python -c "import pyjags"
-      python -c "import pytest;import pyjags"
-      python -c "import pyjags;import pkg_resources;version = pkg_resources.get_distribution(pyjags).version;print(version)"
-    displayName: 'pyjags version'
 
   - script: |
       python -m pylint arviz
