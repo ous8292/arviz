@@ -91,7 +91,7 @@ jobs:
 
 
       grep -Ev '^pystan|^pyro|^emcee|^pymc3' requirements-external.txt > tmp_requirements.txt
-      python -m pip -r install tmp_requirements.txt
+      python -m pip install -r tmp_requirements.txt
       rm tmp_requirements.txt
 
     displayName: 'Install packages'
