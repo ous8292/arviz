@@ -89,9 +89,11 @@ jobs:
           python -m pip --no-cache-dir install pymc3
       fi
 
-      grep -Ev '^pystan|^pyro|^emcee|^pymc3' requirements-external.txt | xargs python -m pip install
 
-      pip install numpy -U
+      grep -Ev '^pystan|^pyro|^emcee|^pymc3' requirements-external.txt > tmp_requirements.txt
+      python -m pip -r install tmp_requirements.txt
+      rm tmp_requirements.txt
+
     displayName: 'Install packages'
 
   - script: |
