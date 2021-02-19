@@ -108,6 +108,12 @@ jobs:
     displayName: 'Print packages'
 
   - script: |
+      python -c "import pyjags"
+      python -c "import pytest;import pyjags"
+      python -c "import pyjags;import pkg_resources;version = pkg_resources.get_distribution(pyjags).version;print(version)"
+    displayName: 'pyjags version'
+
+  - script: |
       python -m pylint arviz
     displayName: 'pylint'
 
